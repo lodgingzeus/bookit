@@ -2,37 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
 html {
   font: Inter, "sans-serif";
-}
-
-.typewriter p {
-  overflow: hidden; /* Hide the text overflow */
-  white-space: nowrap; /* Prevent line breaks */
-  margin: 0; /* Remove any default margins */
-  letter-spacing: 0.15em; /* Adjust letter spacing */
-  animation: typing 4s steps(30, end); /* Apply the typewriter effect animation */
-}
-
-.typewriter {
-  position: relative;
-}
-
-.typewriter::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1px;
-  height: 100%;
-  background-color: transparent;
-}
-
-@keyframes typing {
-  from {
-    width: 0; /* Start with no width */
-  }
-  to {
-    width: 100%; /* Gradually increase width to show the full text */
-  }
 }

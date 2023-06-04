@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import 'src/app/globals.css'
+import 'src/app/home/home.css'
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import img from 'src/app/images/img.jpg';
@@ -27,7 +27,7 @@ export default function Home() {
                     Unlock extraordinary moments with our hassle-free hotel reservations,<br /> where sophistication meets perfection.
                   </p>
                   <button className="bg-transparent hover:bg-[#D03F71] text-[#317C63] font-semibold hover:text-white mx-2 my-4 py-2 px-4 border border-[#317C63] hover:border-transparent rounded">
-                    Book Now
+                    BookIT
                   </button>
                 </div>
               ) : (
@@ -39,7 +39,7 @@ export default function Home() {
                     Unlock extraordinary moments with our hassle-free hotel reservations,<br /> where sophistication meets perfection.
                   </p>
                   <button className="bg-transparent hover:bg-[#D03F71] text-[#317C63] font-semibold hover:text-white mx-2 my-4 py-2 px-4 border border-[#317C63] hover:border-transparent rounded">
-                    Book Now
+                    BookIT
                   </button>
                 </div>
               )}
