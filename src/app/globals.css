@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+html {
+  font: Inter, "sans-serif";
+}
+
+.typewriter p {
+  overflow: hidden; /* Hide the text overflow */
+  border-right: 0.15em solid white; /* Add a blinking cursor effect */
+  white-space: nowrap; /* Prevent line breaks */
+  margin: 0; /* Remove any default margins */
+  letter-spacing: 0.15em; /* Adjust letter spacing */
+  animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite; /* Apply the typewriter effect animation */
+}
+
+@keyframes typing {
+  from {
+    width: 0; /* Start with no width */
+  }
+  to {
+    width: 100%; /* Gradually increase width to show the full text */
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent; /* Hide the cursor */
+  }
+  50% {
+    border-color: white; /* Show the cursor */
+  }
+}
