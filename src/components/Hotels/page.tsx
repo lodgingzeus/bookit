@@ -18,8 +18,7 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Hotels = () => {
-  const hotels = [
+const hotels = [
     { id: 1, image: img1, alt: 'Image 1', name: 'Hotel A', description: 'Description A' },
     { id: 2, image: img2, alt: 'Image 2', name: 'Hotel B', description: 'Description B' },
     { id: 3, image: img3, alt: 'Image 3', name: 'Hotel C', description: 'Description C' },
@@ -34,6 +33,7 @@ const Hotels = () => {
     { id: 12, image: img12, alt: 'Image 12', name: 'Hotel L', description: 'Description L' },
     { id: 13, image: img13, alt: 'Image 13', name: 'Hotel M', description: 'Description M' },
   ];
+const Hotels = () => {
 
   const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
 
@@ -50,12 +50,12 @@ const Hotels = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 m-3 p-3">
         {hotels.map((item) => (
           <div
-            key={item.id}
-            className={`text-black flex flex-col justify-between p-5 m-5 border border-solid border-pink-500 ${
-              hoveredItemId === item.id ? 'hovered' : ''
-            }`}
-            onMouseEnter={() => handleHover(item.id)}
-            onMouseLeave={handleHoverEnd}
+              key={item.id}
+              className={`text-black flex flex-col justify-between p-5 m-5 border border-solid border-pink-500 ${
+                hoveredItemId === item.id ? 'hovered' : ''
+              }`}
+              onMouseEnter={() => handleHover(item.id)}
+              onMouseLeave={handleHoverEnd}
           >
             <div>
               <Image
