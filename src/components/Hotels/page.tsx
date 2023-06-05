@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import img1 from 'src/app/images/img1.jpg';
 import img2 from 'src/app/images/img2.jpg';
 import img3 from 'src/app/images/img3.jpg';
@@ -14,9 +14,7 @@ import img10 from 'src/app/images/img10.jpg';
 import img11 from 'src/app/images/img11.jpg'
 import img12 from 'src/app/images/img12.jpg'
 import img13 from 'src/app/images/img13.jpg'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const hotels = [
     { id: 1, image: img1, alt: 'Image 1', name: 'Hotel A', description: 'Description A' },
@@ -34,7 +32,13 @@ const hotels = [
     { id: 13, image: img13, alt: 'Image 13', name: 'Hotel M', description: 'Description M' },
   ];
 const Hotels = () => {
-
+  let ref = useRef(null);
+  let {scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  let y = useTransform(scrollYProgress, [0,1], ["0%","65%"]);
+  let opacity = useTransform (scrollYProgress, [0,1], [1,1]);
   const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
 
   const handleHover = (itemId: number) => {
@@ -49,7 +53,7 @@ const Hotels = () => {
     <div className="overflow-x-auto border border-solid border-pink-500">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 m-3 p-3">
         {hotels.map((item) => (
-          <div
+          <motion.div style={{y, opacity}}
               key={item.id}
               className={`text-black flex flex-col justify-between p-5 m-5 border border-solid border-pink-500 ${
                 hoveredItemId === item.id ? 'hovered' : ''
@@ -74,7 +78,7 @@ const Hotels = () => {
                     BookIT
                     </button>
                   </div>
-            </div>
+            </motion.div>
         ))}
       </div>
       <style jsx>{`

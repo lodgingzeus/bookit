@@ -4,9 +4,6 @@ import 'src/app/home/home.css'
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import img from 'src/app/images/img.jpg';
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
