@@ -1,3 +1,4 @@
+import { prisma } from "@/db";
 // pages/api/data.js
 
 // export async function GET(req: any, res: any) {
@@ -13,8 +14,16 @@
   
 export async function POST(req: any) {
   try {
-    const { username, password } = await req.json();
-    return new Response(JSON.stringify(JSON.stringify({username: username, pass: password})));
+    const { name, email, password } = await req.json();
+
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password
+      }
+    })
+    return new Response(JSON.stringify(JSON.stringify(newUser)));
   } catch (error) {
     console.log(error)
   }
