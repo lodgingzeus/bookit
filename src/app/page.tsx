@@ -15,7 +15,7 @@ export default function Root() {
     <div className="home">
       <Home />
     </div>
-    <div className="nextpage">
+    <div className="hotels">
       <Hotels />
     </div>
     <div className="footer">

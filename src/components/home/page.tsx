@@ -4,9 +4,7 @@ import '../home/home.css'
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import img from 'src/app/images/img.jpg';
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -19,9 +17,9 @@ export default function Home() {
     <main className="flex-grow">
       <div className="flex justify-center">
         <div className="w-full relative">
-          <div className="h-[calc(100vh-64px)] flex items-center border border-solid border-pink-500">
-            <div className="w-1/2 pl-4 typewriter">
-              <p className="text-black text-lg font-semibold mb-4">
+          <div className="h-[calc(100vh-64px)] relative z-10 flex items-center border border-solid border-pink-500">
+            <div className="w-1/2 pl-4 typewriter ">
+              <p className="text-black text-lg font-semibold mb-4 object-cover">
                 Experience unparalleled luxury and <br /> reserve your stay at the world's most prestigious hotels.
               </p>
               <p className="text-black text-sm mb-8">
@@ -36,7 +34,7 @@ export default function Home() {
                 <Image
                   src={img}
                   alt="Hotel"
-                  className="object-cover h-full w-full filter brightness-55 transition-all duration-300 ease-in-out hover:brightness-100"
+                  className="object-cover h-fit w-fit filter brightness-55 transition-all duration-300 ease-in-out hover:brightness-100"
                 />
               </div>
             </div>
