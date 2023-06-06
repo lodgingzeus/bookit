@@ -20,6 +20,21 @@ model User {
   // reservations Reservations[]
 }
 
+model Hotel {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  address String
+  city String?
+  state String?
+  zip String?
+  country String
+  phone String?
+  description String
+  rating Float?
+  amenities String[]
+  images String[]
+}
+
 // model Reservations {
 //   id String @id @default(auto()) @map("_id") @db.ObjectId
 
