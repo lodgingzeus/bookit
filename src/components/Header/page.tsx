@@ -4,14 +4,18 @@ import Link from "next/link"
 import React from "react"
 import { useState } from 'react'
 import { Dialog, Popover} from '@headlessui/react'
+import { signOut } from "next-auth/react";
 import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-  
+type Props = {
+  currentUser: any;
+} 
 
-const Header: React.FC = () => {
+const Header: React.FC<Props> = ( { currentUser }) => {
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
       <div>
@@ -48,12 +52,22 @@ const Header: React.FC = () => {
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/auth/login" className="px-6 py-3 text-sm font-semibold leading-6 text-gray-900">
-            Log in
-          </a>
-          <a href="/auth/register" className="px-6 py-3 inline-block text-white font-semibold tracking-tight bg-[#E75480] hover:bg-[#FC6C85] rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200">
-            Sign up
-          </a>
+          {currentUser ? (
+            <div>hello {currentUser?.name}
+              <div onClick={() => signOut()} className="px-6 py-3 inline-block text-white font-semibold tracking-tight bg-[#E75480] hover:bg-[#FC6C85] rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200 cursor-pointer">
+                Sign out
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Link href="/auth/login" className="px-6 py-3 text-sm font-semibold leading-6 text-gray-900">
+                Log in
+              </Link>
+              <Link href="/auth/register" className="px-6 py-3 inline-block text-white font-semibold tracking-tight bg-[#E75480] hover:bg-[#FC6C85] rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200">
+                Sign up
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
