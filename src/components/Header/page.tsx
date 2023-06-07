@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link"
 import React from "react"
@@ -37,7 +38,7 @@ const Header: React.FC<Props> = ( { currentUser }) => {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 ">
             About
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -77,7 +78,7 @@ const Header: React.FC<Props> = ( { currentUser }) => {
               <span className="sr-only">BookIT</span>
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="https://tailwindui.com/img/logos/mark.svg?color=pink&shade=600"
                 alt=""
               />
             </a>
