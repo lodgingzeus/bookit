@@ -1,8 +1,10 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/db"
 
-export const authOptions = {
+export const authOptions: any = {
+    adapter: PrismaAdapter(prisma),
     providers: [
         CredentialsProvider({
             name: 'credentials',
@@ -16,14 +18,19 @@ export const authOptions = {
                         email: credentials.email
                     }
                 })
-
+                
                 return user
             }
         })
     ],
     pages: {
-        signIn: '/login'
-    }
+        signIn: '/auth/login',
+    },
+    secret: process.env.SECRET,
+    session: {
+        strategy: "jwt",
+    },
+    debug: process.env.NODE_ENV === 'development'
 }
 
 const handler = NextAuth(authOptions)
