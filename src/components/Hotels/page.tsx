@@ -1,6 +1,7 @@
 'use client';
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import img1 from 'src/app/images/img1.jpg';
 import img2 from 'src/app/images/img2.jpg';
@@ -33,11 +34,15 @@ const hotels = [
 ];
 
 const Hotels = () => {
+
   let ref = useRef(null);
+  const { push } = useRouter()
+
   let { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   });
+
   let y = useTransform(scrollYProgress, [0, 1], ['0%', '55%']);
   let opacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
 
@@ -45,6 +50,10 @@ const Hotels = () => {
     hover: { scale: 1.09, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)' },
     initial: { scale: 1, boxShadow: 'none' },
   };
+
+  const handleClick = (item: any) => {
+    push(`/hotel/${item.id}`)
+  }
 
   return (
     <div className="border border-solid border-pink-500 overflow-auto">
@@ -63,7 +72,7 @@ const Hotels = () => {
                 <h3 className="m-1 p-1">{item.name}</h3>
                 <p className="m-1 p-1">{item.description}</p>
               </div>
-              <button className="my-1 p-2.5 bg-transparent hover:bg-[#D03F71] text-[#317C63] font-semibold hover:text-white border border-[#317C63] hover:border-transparent rounded">
+              <button onClick={() => handleClick(item)} className="my-3 p-2.5 bg-transparent hover:bg-[#D03F71] text-[#317C63] font-semibold hover:text-white border border-[#317C63] hover:border-transparent rounded">
                 BookIT
               </button>
             </div>
