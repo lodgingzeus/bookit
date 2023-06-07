@@ -1,26 +1,14 @@
+import getCurrentUser from "@/actions/getCurrentUser";
+import HomePage from "@/components/HomePage/page";
 /* eslint-disable react/no-unescaped-entities */
-import Home from '@/components/Home/page';
-import Hotels from '@/components/Hotels/page';
-import Header from '@/components/Header/page';
-import Footer from '@/components/Footer/page';
 
 
-export default function Root() {
-  
+export default async function Root() {
+  const currentUser = await getCurrentUser()
+
   return (
   <div>
-    <div className="header">
-      <Header />
-    </div>
-    <div className="home">
-      <Home />
-    </div>
-    <div className="nextpage">
-      <Hotels />
-    </div>
-    <div className="footer">
-      <Footer />
-    </div>
+    <HomePage currentUser = {currentUser}/>
   </div>
   );
 }
