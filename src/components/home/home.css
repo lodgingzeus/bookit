@@ -6,6 +6,7 @@
   letter-spacing: 0.15em;
   animation: typing 4s steps(30, end), blink-caret 0.5s step-end infinite; /* Apply the typewriter effect animation */
 }
+
 .typewriter {
   position: relative;
 }

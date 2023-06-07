@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link"
 import React from "react"
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 ">
             About
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
