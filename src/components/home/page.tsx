@@ -31,7 +31,7 @@ export default function Home() {
               </button>
             </div>
             <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 pr-4 flex justify-center items-end align-middle">
-              <div className="relative overflow-clip border-e-2 border-t-8 border-r-8 border-b-8 border-transparent transition-all duration-300 ease-in-out transform hover:scale-110 hover:border-opacity-100">
+              <div className="relative border-e-2 border-t-8 border-r-8 border-b-8 border-transparent transition-all duration-300 ease-in-out transform hover:scale-110 hover:border-opacity-100 hover:shadow-transparent">
                 <Image
                   src={img}
                   alt="Hotel"

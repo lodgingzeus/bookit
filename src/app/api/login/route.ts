@@ -3,7 +3,7 @@ import { prisma } from "@/db";
 export async function POST( req: Request ) {
     const { email, password } = await req.json()
     try {
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findUniqueOrThrow({
             where: {
                 email: email,
             }
