@@ -52,10 +52,23 @@ const SignUp = () => {
       setUserInfo((prevInfo) => ({...prevInfo, [name]: value}))
     }
 
+    const googleSignIn = (e: any) => {
+      e.preventDefault()
+      signIn('google', { callbackUrl: 'http://localhost:3000'})
+
+    }
+    
+    const githubSignIn = (e: any) => {
+      e.preventDefault()
+      signIn('github', { callbackUrl: 'http://localhost:3000'})
+      
+
+    }
+
     return (
   <>
     <div className="flex container items-center justify-center h-screen w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-    <FormField isSignUp={isSignUp} handleChange={handleChange} handleSubmit = {handleSubmit}/>
+    <FormField isSignUp={isSignUp} handleChange={handleChange} handleSubmit = {handleSubmit} googleSignIn = {googleSignIn} githubSignIn = {githubSignIn}/>
       <ToastContainer 
         position="top-right"
         autoClose={5000}
