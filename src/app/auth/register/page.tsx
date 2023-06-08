@@ -40,7 +40,7 @@ const SignUp = () => {
 
     const handleChange = (e: any) => {
       const { name, value } = e.target
-      setUserInfo((prevInfo) => ({...prevInfo, [name]: value}))
+      setUserInfo((prevInfo) => ({...prevInfo, [name]: value,}))
     }
 
     return (
