@@ -32,7 +32,7 @@ model Hotel {
   description String
   rating Float?
   amenities String[]
-  // images String[]?
+  image String
   price String
 }
 
