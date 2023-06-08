@@ -41,6 +41,7 @@ model Account {
 }
 
 model Hotel {
+<<<<<<< HEAD
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   address     String
@@ -53,6 +54,21 @@ model Hotel {
   rating      Float?
   amenities   String[]
   images      String[]
+=======
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  address String
+  city String?
+  state String?
+  zip String?
+  country String?
+  phone String?
+  description String
+  rating Float?
+  amenities String[]
+  // images String[]?
+  price String
+>>>>>>> 860b6681023232a8b2ae94a536f8f6c2b1738566
 }
 
 // model Reservations {
