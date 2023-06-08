@@ -11,16 +11,50 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
-  email String? @unique
-  password String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String?  @unique
+  password  String?
   createdAt DateTime @default(now())
 
   // reservations Reservations[]
+  accounts Account[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String?
+  provider          String?
+  providerAccountId String?
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
 model Hotel {
+<<<<<<< HEAD
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  address     String
+  city        String?
+  state       String?
+  zip         String?
+  country     String
+  phone       String?
+  description String
+  rating      Float?
+  amenities   String[]
+  images      String[]
+=======
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   address String
@@ -34,6 +68,7 @@ model Hotel {
   amenities String[]
   image String
   price String
+>>>>>>> 860b6681023232a8b2ae94a536f8f6c2b1738566
 }
 
 // model Reservations {
