@@ -10,11 +10,11 @@ export default async function getCurrentUser() {
     try {
         const session = await getSession()
 
-        if(!session?.user?.email) return null
+        if(!(session as any)?.user?.email) return null
 
         const user = await prisma.user.findUnique({
             where: {
-                email: session?.user?.email as string
+                email: (session as any)?.user?.email as string
             }
         })
 

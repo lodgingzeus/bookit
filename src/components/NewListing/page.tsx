@@ -3,25 +3,26 @@
 import { useState } from "react"
 import getCurrentUser from "@/actions/getCurrentUser"
 import Header from "@/components/Header/page"
+import ImageUpload from "../ImageUpload/page"
 
 const NewListing = ( { formData, setFormData, handleSubmit }: any) => {
     
       const handleChange = (e: any) => {
-        if (e.target.name === 'image') {
-          setFormData({
-            ...formData,
-            [e.target.name]: e.target.files[0],
-          });
-        } else {
+        // if (e.target.name === 'image') {
+        //   setFormData({
+        //     ...formData,
+        //     [e.target.name]: e.target.files[0],
+        //   });
+        // } else {
           setFormData({
             ...formData,
             [e.target.name]: e.target.value,
           });
-        }
+        // }
       };
     
       return (
-        <form className="max-w-md mx-auto p-6 bg-white rounded shadow-lg">
+        <form className="max-w-md mx-auto p-6 bg-white rounded shadow-lg" encType="multipart/form-data">
           <h2 className="text-2xl font-bold mb-6">Create new Listing</h2>
           <div className="mb-4">
             <label className="block mb-2 font-semibold" htmlFor="hotelName">
@@ -66,14 +67,15 @@ const NewListing = ( { formData, setFormData, handleSubmit }: any) => {
             <label className="block mb-2 font-semibold" htmlFor="image">
               Image
             </label>
-            <input
+            <ImageUpload />
+            {/* <input
               className="w-full p-2 border border-gray-300 rounded"
               type="file"
               name="image"
               id="image"
               onChange={handleChange}
               
-            />
+            /> */}
           </div>
           <div className="mb-4">
             <label className="block mb-2 font-semibold" htmlFor="amenities">
