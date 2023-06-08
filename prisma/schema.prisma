@@ -11,22 +11,36 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String?
-  email     String?  @unique
-  password  String?
-  createdAt DateTime @default(now())
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
-  // reservations Reservations[]
   accounts Account[]
 }
+
+// model User {
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   name      String?
+//   email     String?  @unique
+//   password  String?
+//   image     String?
+//   createdAt DateTime? @default(now())
+
+//   // reservations Reservations[]
+//   accounts Account[]
+// }
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
-  type              String?
-  provider          String?
-  providerAccountId String?
+  type              String
+  provider          String
+  providerAccountId String
   refresh_token     String? @db.String
   access_token      String? @db.String
   expires_at        Int?
@@ -41,7 +55,7 @@ model Account {
 }
 
 model Hotel {
-<<<<<<< HEAD
+// <<<<<<< HEAD
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   address     String
@@ -54,21 +68,21 @@ model Hotel {
   rating      Float?
   amenities   String[]
   images      String[]
-=======
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  address String
-  city String?
-  state String?
-  zip String?
-  country String?
-  phone String?
-  description String
-  rating Float?
-  amenities String[]
-  image String
-  price String
->>>>>>> 860b6681023232a8b2ae94a536f8f6c2b1738566
+// =======
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
+//   name String
+//   address String
+//   city String?
+//   state String?
+//   zip String?
+//   country String?
+//   phone String?
+//   description String
+//   rating Float?
+//   amenities String[]
+//   image String
+//   price String
+// >>>>>>> 860b6681023232a8b2ae94a536f8f6c2b1738566
 }
 
 // model Reservations {
