@@ -3,8 +3,10 @@
 import Link from "next/link"
 import React from "react"
 import { useState } from 'react'
+import Image from 'next/image';
 import { Dialog, Popover} from '@headlessui/react'
 import { signOut } from "next-auth/react";
+import logo from '../../app/images/logo.png'
 import {
   Bars3Icon,
   XMarkIcon,
@@ -24,7 +26,7 @@ const Header: React.FC<Props> = ( { currentUser }) => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">BookIT</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=pink&shade=600" alt="" />
+              <Image src={logo} alt="logo" className="h-30 w-20" />
           </a>
         </div>
         <div className="flex lg:hidden">
