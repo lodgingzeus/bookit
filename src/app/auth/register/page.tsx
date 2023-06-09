@@ -2,6 +2,7 @@
 
 import FormField from "@/components/FormField/FormField";
 import { useState } from "react"
+import { signIn } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,12 +13,13 @@ const SignUp = () => {
     const [ userInfo, setUserInfo ] = useState({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      accountType: ''
     })
 
     const handleSubmit = async (e: any) => {
       e.preventDefault()
-      const { name, email, password } = userInfo
+      const { name, email, password, accountType } = userInfo
       if(name == '' || email == undefined || password == null) return alert('Enter all info')
       console.log(userInfo)
       try {
@@ -27,6 +29,7 @@ const SignUp = () => {
             name: name,
             email: email,
             password: password,
+            accountType: accountType
           }),
         })
         const data = await response.json()
@@ -43,10 +46,23 @@ const SignUp = () => {
       setUserInfo((prevInfo) => ({...prevInfo, [name]: value,}))
     }
 
+    const googleSignIn = (e: any) => {
+      e.preventDefault()
+      signIn('google', { callbackUrl: 'http://localhost:3000'})
+
+    }
+    
+    const githubSignIn = (e: any) => {
+      e.preventDefault()
+      signIn('github', { callbackUrl: 'http://localhost:3000'})
+      
+
+    }
+
     return (
   <>
     <div className="flex container items-center justify-center h-screen w-screen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-    <FormField isSignUp={isSignUp} handleChange={handleChange} handleSubmit={handleSubmit}/>
+    <FormField isSignUp={isSignUp} handleChange={handleChange} handleSubmit={handleSubmit} googleSignIn = {googleSignIn} githubSignIn = {githubSignIn}/>
       <ToastContainer 
         position="top-right"
         autoClose={5000}
