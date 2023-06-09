@@ -13,12 +13,13 @@ const SignUp = () => {
     const [ userInfo, setUserInfo ] = useState({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      accountType: ''
     })
 
     const handleSubmit = async (e: any) => {
       e.preventDefault()
-      const { name, email, password } = userInfo
+      const { name, email, password, accountType } = userInfo
       if(name == '' || email == undefined || password == null) return alert('Enter all info')
       console.log(userInfo)
       try {
@@ -28,6 +29,7 @@ const SignUp = () => {
             name: name,
             email: email,
             password: password,
+            accountType: accountType
           }),
         })
         const data = await response.json()

@@ -17,7 +17,9 @@ type Props = {
 } 
 
 const Header: React.FC<Props> = ( { currentUser }) => {
-  
+
+  const isHost = (currentUser?.userType === 'Host') ? true : false
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
       <div>
@@ -52,6 +54,11 @@ const Header: React.FC<Props> = ( { currentUser }) => {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Company
           </a>
+          {isHost && (
+            <Link href="/newlisting" className="text-sm font-semibold leading-6 text-gray-900">
+            Create a listing
+            </Link>
+          )}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {currentUser ? (
