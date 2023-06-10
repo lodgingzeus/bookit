@@ -63,10 +63,11 @@ model Hotel {
   city        String?
   state       String?
   zip         String?
-  country     String
+  country     String?
   phone       String?
   description String
   rating      Float?
+  price       String
   amenities   String[]
   images      String[]
 // =======
