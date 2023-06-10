@@ -8,17 +8,17 @@ import ImageUpload from "../ImageUpload/page"
 const NewListing = ( { formData, setFormData, handleSubmit }: any) => {
     
       const handleChange = (e: any) => {
-        // if (e.target.name === 'image') {
-        //   setFormData({
-        //     ...formData,
-        //     [e.target.name]: e.target.files[0],
-        //   });
-        // } else {
+        if (e.target.name === 'image') {
+          setFormData({
+            ...formData,
+            [e.target.name]: e.target.files[0],
+          });
+        } else {
           setFormData({
             ...formData,
             [e.target.name]: e.target.value,
           });
-        // }
+        }
       };
     
       return (
@@ -67,15 +67,15 @@ const NewListing = ( { formData, setFormData, handleSubmit }: any) => {
             <label className="block mb-2 font-semibold" htmlFor="image">
               Image
             </label>
-            <ImageUpload />
-            {/* <input
+            {/* <ImageUpload /> */}
+            <input
               className="w-full p-2 border border-gray-300 rounded"
               type="file"
               name="image"
               id="image"
               onChange={handleChange}
               
-            /> */}
+            />
           </div>
           <div className="mb-4">
             <label className="block mb-2 font-semibold" htmlFor="amenities">
