@@ -15,7 +15,7 @@ const page = () => {
       });
 
       const handleSubmit = async (e: any) => {
-        console.log(formData.image)
+        // console.log(formData.image)
         e.preventDefault()
         try {
             const response = await fetch('/api/newlisting', {
