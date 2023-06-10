@@ -47,6 +47,17 @@ const FormField = ({ isSignUp, handleChange, handleSubmit, googleSignIn, githubS
             placeholder="****"
           />
         </div>
+        {isSignUp && (
+          <div className="mb-6">
+          <label className="block text-[#D03F71] text-sm font-bold mb-2" htmlFor="password">
+            Sign up as a
+          </label>
+          <select name="accountType" onChange={handleChange} className="w-full py-2 px-3 text-gray-700 border rounded shadow">
+            <option value="User">User</option>
+            <option value="Host">Host</option>
+          </select>
+          </div>
+        )}
         <div className="flex items-center w-full">
           <button
             onClick={handleSubmit}
