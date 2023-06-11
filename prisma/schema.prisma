@@ -11,14 +11,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String?
-  email     String?  @unique
+  email     String?   @unique
   password  String?
-  createdAt DateTime @default(now())
-
+  createdAt DateTime  @default(now())
+  accounts  Account[]
   // reservations Reservations[]
-  accounts Account[]
 }
 
 model Account {
@@ -41,34 +40,19 @@ model Account {
 }
 
 model Hotel {
-<<<<<<< HEAD
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   address     String
   city        String?
   state       String?
   zip         String?
-  country     String
+  country     String?
   phone       String?
   description String
   rating      Float?
   amenities   String[]
-  images      String[]
-=======
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  address String
-  city String?
-  state String?
-  zip String?
-  country String?
-  phone String?
-  description String
-  rating Float?
-  amenities String[]
-  image String
-  price String
->>>>>>> 860b6681023232a8b2ae94a536f8f6c2b1738566
+  image       String?
+  price       String
 }
 
 // model Reservations {

@@ -1,117 +1,138 @@
-'use client'
+import React, { useState, ChangeEvent, FormEvent, useCallback } from 'react';
+import ImageUpload from '../ImageUpload/page';
 
-import { useState } from "react"
-import getCurrentUser from "@/actions/getCurrentUser"
-import Header from "@/components/Header/page"
-import ImageUpload from "../ImageUpload/page"
+type NewListingProps = {
+  formData: {
+    hotelName: string;
+    price: string;
+    location: string;
+    image: string;
+    amenities: string;
+    description: string;
+  };
+  setFormData: React.Dispatch<
+    React.SetStateAction<{
+      hotelName: string;
+      price: string;
+      location: string;
+      image: string;
+      amenities: string;
+      description: string;
+    }>
+  >;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void; // Update the type here
+};
 
-const NewListing = ( { formData, setFormData, handleSubmit }: any) => {
-    
-      const handleChange = (e: any) => {
-        // if (e.target.name === 'image') {
-        //   setFormData({
-        //     ...formData,
-        //     [e.target.name]: e.target.files[0],
-        //   });
-        // } else {
-          setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-          });
-        // }
-      };
-    
-      return (
-        <form className="max-w-md mx-auto p-6 bg-white rounded shadow-lg" encType="multipart/form-data">
-          <h2 className="text-2xl font-bold mb-6">Create new Listing</h2>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="hotelName">
-              Hotel Name
-            </label>
-            <input
-              className="w-full p-2 border border-gray-300 rounded"
-              type="text"
-              name="hotelName"
-              id="hotelName"
-              onChange={handleChange}
-              
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="price">
-              Price
-            </label>
-            <input
-              className="w-full p-2 border border-gray-300 rounded"
-              type="text"
-              name="price"
-              id="price"
-              onChange={handleChange}
-              
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="location">
-              Location
-            </label>
-            <input
-              className="w-full p-2 border border-gray-300 rounded"
-              type="text"
-              name="location"
-              id="location"
-              onChange={handleChange}
-              
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="image">
-              Image
-            </label>
-            <ImageUpload />
-            {/* <input
-              className="w-full p-2 border border-gray-300 rounded"
-              type="file"
-              name="image"
-              id="image"
-              onChange={handleChange}
-              
-            /> */}
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="amenities">
-              Amenities
-            </label>
-            <input
-              className="w-full p-2 border border-gray-300 rounded"
-              type="text"
-              name="amenities"
-              id="amenities"
-              onChange={handleChange}
-              
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-semibold" htmlFor="description">
-              Description
-            </label>
-            <textarea
-              className="w-full p-2 border border-gray-300 rounded"
-              name="description"
-              id="description"
-              rows={4}
-              onChange={handleChange}
-              
-             />
-          </div>
-          <button
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </form>
-      )
-}
+const NewListing = ({
+  formData,
+  setFormData,
+  handleSubmit,
+}: NewListingProps) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-export default NewListing
+  const handleImageChange = useCallback((image: string) => {
+    setFormData({
+      ...formData,
+      image,
+    });
+  }, [formData, setFormData]);
+
+  return (
+    <form className="max-w-md mx-auto p-6 bg-white rounded shadow-lg" onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold mb-6">Create new Listing</h2>
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold" htmlFor="hotelName">
+          Hotel Name
+        </label>
+        <input
+          className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500"
+          type="text"
+          name="hotelName"
+          id="hotelName"
+          onChange={handleChange}
+          value={formData.hotelName}
+          placeholder="Enter hotel name"
+          required // Make the input required
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold" htmlFor="price">
+          Price
+        </label>
+        <input
+          className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500"
+          type="text"
+          name="price"
+          id="price"
+          onChange={handleChange}
+          value={formData.price}
+          placeholder="Enter price"
+          required // Make the input required
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold" htmlFor="location">
+          Location
+        </label>
+        <input
+          className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500"
+          type="text"
+          name="location"
+          id="location"
+          onChange={handleChange}
+          value={formData.location}
+          placeholder="Enter location"
+          required // Make the input required
+        />
+      </div>
+      <div className="mb-4">
+        <ImageUpload onChange={handleImageChange} />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold" htmlFor="amenities">
+          Amenities
+        </label>
+        <input
+          className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500"
+          type="text"
+          name="amenities"
+          id="amenities"
+          onChange={handleChange}
+          value={formData.amenities}
+          placeholder="Enter amenities"
+          required // Make the input required
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 font-semibold" htmlFor="description">
+          Description
+        </label>
+        <textarea
+          className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500"
+          name="description"
+          id="description"
+          rows={4}
+          onChange={handleChange}
+          value={formData.description}
+          placeholder="Enter description"
+          required // Make the textarea required
+        />
+      </div>
+      <button
+        className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  );
+};
+
+export default NewListing;
