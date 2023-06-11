@@ -1,10 +1,10 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/db";
+import prisma  from "@/db";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-
+import bcrypt from 'bcrypt'
 
 export const authOptions: any = {
   adapter: PrismaAdapter(prisma),
@@ -30,6 +30,16 @@ export const authOptions: any = {
           },
         });
 
+        if(!user || !user?.hashedPassword){
+          throw new Error('No user Found')
+        }
+
+        const checkPassword = await bcrypt.compare(credentials.password, user.hashedPassword)
+
+        if(!checkPassword){
+          throw new Error('Incorrect Password')
+        }
+
         return user;
       },
     }),
@@ -41,19 +51,19 @@ export const authOptions: any = {
   session: {
     strategy: "jwt",
   },
-  callbacks: {
-    async signIn({  }) {
-      const isAllowedToSignIn = true;
-      if (isAllowedToSignIn) {
-        return true;
-      } else {
-        // Return false to display a default error message
-        return false;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized';
-      }
-    },
-  },
+  // callbacks: {
+  //   async signIn({  }) {
+  //     const isAllowedToSignIn = true;
+  //     if (isAllowedToSignIn) {
+  //       return true;
+  //     } else {
+  //       // Return false to display a default error message
+  //       return false;
+  //       // Or you can return a URL to redirect to:
+  //       // return '/unauthorized';
+  //     }
+  //   },
+  // },
   debug: process.env.NODE_ENV === "development",
 };
 

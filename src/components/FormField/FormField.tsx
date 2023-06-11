@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
-const FormField = ({ isSignUp, handleChange, handleSubmit }: any) => {
+const FormField = ({ isSignUp, handleChange, handleSubmit, googleSignIn, githubSignIn }: any) => {
   return (
     <div>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border border-pink-500">
@@ -47,6 +47,17 @@ const FormField = ({ isSignUp, handleChange, handleSubmit }: any) => {
             placeholder="****"
           />
         </div>
+        {isSignUp && (
+          <div className="mb-6">
+          <label className="block text-[#D03F71] text-sm font-bold mb-2" htmlFor="password">
+            Sign up as a
+          </label>
+          <select name="accountType" onChange={handleChange} className="w-full py-2 px-3 text-gray-700 border rounded shadow">
+            <option value="User">User</option>
+            <option value="Host">Host</option>
+          </select>
+          </div>
+        )}
         <div className="flex items-center w-full">
           <button
             onClick={handleSubmit}
@@ -59,14 +70,14 @@ const FormField = ({ isSignUp, handleChange, handleSubmit }: any) => {
         <>
           <div className="flex flex-col gap-4 mt-3">
             <button 
-              onClick={() => signIn('google')} 
+              onClick={googleSignIn} 
               className="flex justify-center items-center w-full border border-[#317C63] hover:bg-[#D03F71] text-[#317C63] hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
               type="button"
             >
               <FcGoogle className="m-2"/> Continue with Google
             </button>
             <button 
-              onClick={() => signIn('github')} 
+              onClick={githubSignIn} 
               className="flex justify-center items-center w-full border border-[#317C63] hover:bg-[#D03F71] text-[#317C63] hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
               type="button"
             >

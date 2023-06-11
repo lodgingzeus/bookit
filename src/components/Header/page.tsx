@@ -3,8 +3,10 @@
 import Link from "next/link"
 import React from "react"
 import { useState } from 'react'
+import Image from 'next/image';
 import { Dialog, Popover} from '@headlessui/react'
 import { signOut } from "next-auth/react";
+import logo from '../../app/images/logo.png'
 import {
   Bars3Icon,
   XMarkIcon,
@@ -15,7 +17,9 @@ type Props = {
 } 
 
 const Header: React.FC<Props> = ( { currentUser }) => {
-  
+
+  const isHost = (currentUser?.userType === 'Host') ? true : false
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
       <div>
@@ -24,7 +28,7 @@ const Header: React.FC<Props> = ( { currentUser }) => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">BookIT</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=pink&shade=600" alt="" />
+              <Image src={logo} alt="logo" className="h-30 w-20" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -50,6 +54,11 @@ const Header: React.FC<Props> = ( { currentUser }) => {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Company
           </a>
+          {isHost && (
+            <Link href="/newlisting" className="text-sm font-semibold leading-6 text-gray-900">
+            Create a listing
+            </Link>
+          )}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {currentUser ? (
