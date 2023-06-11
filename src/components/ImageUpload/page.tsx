@@ -1,20 +1,19 @@
-import React, { useState, ChangeEvent } from 'react';
+'use client'
+import { CldUploadButton } from 'next-cloudinary';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
 
-const ImageUpload = ({ onChange }: { onChange: (file: File) => void }) => {
+const ImageUpload = ( { onChange }: any ) => {
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]; // Add a null check using optional chaining
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
-      onChange(file); // Pass the selected file to the parent component
-    }
-  };
+  const handleUpload = useCallback((result: any) => {
+    onChange(result.info.secure_url);
+    setSelectedImage(result.info.secure_url)
+  }, [onChange]);
 
   const handleImageRemove = () => {
     setSelectedImage(null);
-  };
+    };
 
   return (
     <div>
@@ -50,15 +49,8 @@ const ImageUpload = ({ onChange }: { onChange: (file: File) => void }) => {
       ) : (
         <div className="mb-4">
           <div className="border border-gray-300 rounded-md p-4">
-            <input
-              type="file"
-              id="image-upload"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="hidden"
-            />
+          <CldUploadButton uploadPreset="cvesltdr" onUpload={handleUpload}/>       
             <label htmlFor="image-upload" className="cursor-pointer">
-              Choose Image
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -77,7 +69,7 @@ const ImageUpload = ({ onChange }: { onChange: (file: File) => void }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ImageUpload;
+export default ImageUpload
