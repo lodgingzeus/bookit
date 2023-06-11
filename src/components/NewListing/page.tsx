@@ -1,5 +1,12 @@
-import React, { useState, ChangeEvent, FormEvent, useCallback } from 'react';
+'use client'
+
+import React, { useState, ChangeEvent, FormEvent, useCallback, useEffect } from 'react';
 import ImageUpload from '../ImageUpload/page';
+// import { v2 as cloudinary } from 'cloudinary';
+
+
+
+
 
 type NewListingProps = {
   formData: {
@@ -28,6 +35,7 @@ const NewListing = ({
   setFormData,
   handleSubmit,
 }: NewListingProps) => {
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,12 +45,10 @@ const NewListing = ({
     });
   };
 
-  const handleImageChange = useCallback((image: string) => {
-    setFormData({
-      ...formData,
-      image,
-    });
-  }, [formData, setFormData]);
+  const handleImageChange = (e: any) => {
+    console.log(e)
+    setFormData({...formData, image: e})
+  }
 
   return (
     <form className="max-w-md mx-auto p-6 bg-white rounded shadow-lg" onSubmit={handleSubmit}>

@@ -1,50 +1,21 @@
-import express, { Request, Response, NextFunction } from 'express';
-import { prisma } from '@/db';
-import multer from 'multer';
-import { ParsedQs } from 'qs';
+import prisma  from "@/db"
 
-const router = express.Router();
-router.use(express.json());
+export async function POST(req: Request){
+    const { hotelName, price, location, amenities, description, image } = await req.json()
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Specify the directory where you want to store the uploaded files
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    },
-});
-
-const upload = multer({ storage: storage });
-
-router.post('/', upload.single('image'), createListing);
-
-async function createListing(req: Request<
-    {},
-    {},
-    { name: string; price: string; location: string; amenities: string; description: string },
-    ParsedQs
->, res: Response, next: NextFunction) {
     try {
-        const { name, price, location, amenities, description } = req.body;
-        const image = req.file;
-
         const newListing = await prisma.hotel.create({
             data: {
-                name: name,
+                name: hotelName,
                 price: price,
                 address: location,
                 amenities: amenities,
                 description: description,
-                image: image ? image.filename : undefined, // Use the uploaded file's name as the image field value if an image is uploaded
-            },
-        });
-
-        return res.json({ success: 'success' });
+                images: image
+            }
+        })
+        return new Response(JSON.stringify({"success": "success"}))
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error: 'Error creating listing' });
+        console.log(error)
     }
 }
-
-export { router as newListingRouter };
