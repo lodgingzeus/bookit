@@ -4,7 +4,7 @@ import HomePage from "@/components/HomePage/page";
 
 export default async function Root() {
   const currentUser = await getCurrentUser()
-  const hotelList = await getHotelList()
+  const hotelList: any  = await getHotelList()
   return (
   <div>
     <HomePage currentUser = {currentUser} hotelList = {hotelList}/>

@@ -6,15 +6,24 @@ import NewListing from '@/components/NewListing/page';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSession } from 'next-auth/react';
 
+type FormData = {
+  hotelName: string;
+  price: string;
+  location: string;
+  images: string[];
+  amenities: string;
+  description: string;
+}
+
 const Page = ( {params}: any) => {
 
   const { id } = params
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     hotelName: '',
     price: '',
     location: '',
-    image: '',
+    images: [],
     amenities: '',
     description: '',
   });
@@ -39,7 +48,7 @@ const Page = ( {params}: any) => {
           hotelName: '',
           price: '',
           location: '',
-          image: '',
+          images: [],
           amenities: '',
           description: '',
         })

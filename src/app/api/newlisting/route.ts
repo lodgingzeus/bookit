@@ -1,8 +1,8 @@
 import prisma  from "@/db"
 
 export async function POST(req: Request){
-    const { hotelName, price, location, amenities, description, image, hostId } = await req.json()
-
+    const { hotelName, price, location, amenities, description, images, hostId } = await req.json()
+    console.log(images)
     try {
         const newListing = await prisma.hotel.create({
             data: {
@@ -11,7 +11,7 @@ export async function POST(req: Request){
                 address: location,
                 amenities: amenities,
                 description: description,
-                images: image,
+                images: images,
                 hostId: hostId
             }
         })
