@@ -55,8 +55,6 @@ const SignUp = () => {
     const githubSignIn = (e: any) => {
       e.preventDefault()
       signIn('github', { callbackUrl: 'http://localhost:3000'})
-      
-
     }
 
     return (

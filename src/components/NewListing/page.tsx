@@ -1,12 +1,7 @@
 'use client'
 
-import React, { useState, ChangeEvent, FormEvent, useCallback, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import ImageUpload from '../ImageUpload/page';
-// import { v2 as cloudinary } from 'cloudinary';
-
-
-
-
 
 type NewListingProps = {
   formData: {

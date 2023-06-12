@@ -21,30 +21,8 @@ const SignUp = () => {
       e.preventDefault()
       signIn('credentials', { ...userInfo, redirect: false})
       .then(() => {
-        console.log('user is now logged in!')
         push("/")
     })
-      // const {email, password } = userInfo
-      // if(email == undefined || password == null) return alert('Enter all info')
-      // console.log(userInfo)
-      // try {
-      //   const response = await fetch('/api/login', {
-      //     method: "POST",
-      //     body: JSON.stringify({
-      //       email: email,
-      //       password: password,
-      //     }),
-      //   })
-      //   const data = await response.json()
-      //   if(data.message == 'success'){ 
-      //       toast.success('Logged in successfully')
-      //       push("/")
-      //   }
-      //   if(data.error) toast.warn(data.error)
-        
-      // } catch (error) {
-      //   toast.warn('Internal server error')
-      // }
     }
 
     const handleChange = (e: any) => {
@@ -55,14 +33,11 @@ const SignUp = () => {
     const googleSignIn = (e: any) => {
       e.preventDefault()
       signIn('google', { callbackUrl: 'http://localhost:3000'})
-
     }
     
     const githubSignIn = (e: any) => {
       e.preventDefault()
       signIn('github', { callbackUrl: 'http://localhost:3000'})
-      
-
     }
 
     return (
