@@ -55,7 +55,7 @@ const Header: React.FC<Props> = ( { currentUser }) => {
             Company
           </a>
           {isHost && (
-            <Link href="/newlisting" className="text-sm font-semibold leading-6 text-gray-900">
+            <Link href={`/newlisting/${currentUser?.id}`} className="text-sm font-semibold leading-6 text-gray-900">
             Create a listing
             </Link>
           )}

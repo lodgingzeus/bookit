@@ -51,19 +51,6 @@ export const authOptions: any = {
   session: {
     strategy: "jwt",
   },
-  // callbacks: {
-  //   async signIn({  }) {
-  //     const isAllowedToSignIn = true;
-  //     if (isAllowedToSignIn) {
-  //       return true;
-  //     } else {
-  //       // Return false to display a default error message
-  //       return false;
-  //       // Or you can return a URL to redirect to:
-  //       // return '/unauthorized';
-  //     }
-  //   },
-  // },
   debug: process.env.NODE_ENV === "development",
 };
 
