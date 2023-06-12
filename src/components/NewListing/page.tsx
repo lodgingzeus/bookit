@@ -8,7 +8,7 @@ type NewListingProps = {
     hotelName: string;
     price: string;
     location: string;
-    image: string;
+    images: string[];
     amenities: string;
     description: string;
   };
@@ -17,7 +17,7 @@ type NewListingProps = {
       hotelName: string;
       price: string;
       location: string;
-      image: string;
+      images: string[];
       amenities: string;
       description: string;
     }>
@@ -42,7 +42,10 @@ const NewListing = ({
 
   const handleImageChange = (e: any) => {
     console.log(e)
-    setFormData({...formData, image: e})
+    setFormData((prevData) => ({
+      ...prevData,
+      images: [...prevData.images, e]
+    }))
   }
 
   return (

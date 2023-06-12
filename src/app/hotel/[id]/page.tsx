@@ -1,16 +1,16 @@
 import Header from "@/components/Header/page";
 import getCurrentUser from "@/actions/getCurrentUser";
 import Image from "next/image";
+import {getHotelById} from "@/actions/getHotelById";
 import img1 from '../../images/img1.jpg';
 import img2 from '../../images/img2.jpg';
 import img3 from '../../images/img3.jpg';
-// Import additional hotel images
 
 const Page = async ({ params }: any) => {
   const currentUser = await getCurrentUser();
 
   const { id } = params;
-
+  const hotel = await getHotelById(id);
   // Array of hotel images
   const hotelImages = [img1, img2, img3];
   // Add more hotel images to the array
@@ -19,11 +19,11 @@ const Page = async ({ params }: any) => {
     <div className="mx-auto px-4">
       <Header currentUser={currentUser} />
       <main className="flex flex-col items-center justify-center border-2 p-8">
-        <h1 className="text-3xl font-bold mb-4">Hotel {id}</h1>
+        <h1 className="text-3xl font-bold mb-4">Hotel {hotel?.name}</h1>
         <div className="grid grid-cols-3 gap-4 mb-4">
-          {hotelImages.map((image, index) => (
+          {hotel?.images.map((image, index) => (
             <div key={index} className="w-96 h-96 rounded overflow-hidden shadow-md">
-              <Image src={image} alt={`Hotel Image ${index + 1}`} className="object-cover w-full h-full" />
+              <Image src={image} alt={`Hotel Image ${index + 1}`} height={500} width={500} className="object-cover w-full h-full" />
             </div>
           ))}
         </div>

@@ -4,7 +4,7 @@ import Home from "../Home/page"
 import Hotels from "../Hotels/page"
 
 
-function HomePage({ currentUser }: any , { hotelList }:any ) {
+function HomePage({ currentUser, hotelList }: any ) {
     return (
         <>
         <div>

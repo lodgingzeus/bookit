@@ -1,40 +1,11 @@
 'use client';
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { CldImage } from 'next-cloudinary';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import img1 from 'src/app/images/img1.jpg';
-import img2 from 'src/app/images/img2.jpg';
-import img3 from 'src/app/images/img3.jpg';
-import img4 from 'src/app/images/img4.jpg';
-import img5 from 'src/app/images/img5.jpg';
-import img6 from 'src/app/images/img6.jpg';
-import img7 from 'src/app/images/img7.jpg';
-import img8 from 'src/app/images/img8.jpg';
-import img9 from 'src/app/images/img9.jpg';
-import img10 from 'src/app/images/img10.jpg';
-import img11 from 'src/app/images/img11.jpg'
-import img12 from 'src/app/images/img12.jpg'
-import img13 from 'src/app/images/img13.jpg'
 
-const hotels = [
-  { id: 1, image: img1, alt: 'Image 1', name: 'Hotel A', description: 'Description A' },
-  { id: 2, image: img2, alt: 'Image 2', name: 'Hotel B', description: 'Description B' },
-  { id: 3, image: img3, alt: 'Image 3', name: 'Hotel C', description: 'Description C' },
-  { id: 4, image: img4, alt: 'Image 4', name: 'Hotel D', description: 'Description D' },
-  { id: 5, image: img5, alt: 'Image 5', name: 'Hotel E', description: 'Description E' },
-  { id: 6, image: img6, alt: 'Image 6', name: 'Hotel F', description: 'Description F' },
-  { id: 7, image: img7, alt: 'Image 7', name: 'Hotel G', description: 'Description G' },
-  { id: 8, image: img8, alt: 'Image 8', name: 'Hotel H', description: 'Description H' },
-  { id: 9, image: img9, alt: 'Image 9', name: 'Hotel I', description: 'Description I' },
-  { id: 10, image: img10, alt: 'Image 10', name: 'Hotel J', description: 'Description J' },
-  { id: 11, image: img11, alt: 'Image 11', name: 'Hotel K', description: 'Description K' },
-  { id: 12, image: img12, alt: 'Image 12', name: 'Hotel L', description: 'Description L' },
-  { id: 13, image: img13, alt: 'Image 13', name: 'Hotel M', description: 'Description M' },
-];
-
-const Hotels = () => {
-
+const Hotels = ( { hotelList }: any ) => {
+  console.log(hotelList)
   let ref = useRef(null);
   const { push } = useRouter()
 
@@ -58,7 +29,7 @@ const Hotels = () => {
   return (
     <div className="border border-solid border-pink-500 overflow-auto">
       <motion.div style={{ y, opacity }} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 m-3 p-3">
-        {hotels.map((item) => (
+        {hotelList.map((item: any) => (
           <motion.div
             key={item.id}
             className="text-black flex flex-col justify-between p-5 m-5 border border-solid border-pink-500 bg-slate-100"
@@ -67,7 +38,7 @@ const Hotels = () => {
             initial="initial"
           >
             <div>
-              <Image src={item.image} alt={item.alt} className="object-cover w-full h-52 mb-4" />
+              <CldImage src={item.images[0]} width={500} height={500} alt="hotel image" className="object-cover w-full h-52 mb-4" />
               <div className="text-lg text-black font-medium flex align-middle items-center justify-evenly border border-solid border-pink-500 bg-inherit rounded">
                 <h3 className="m-1 p-1">{item.name}</h3>
                 <p className="m-1 p-1">{item.description}</p>
