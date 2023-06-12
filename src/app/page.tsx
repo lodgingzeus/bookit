@@ -1,14 +1,13 @@
 import getCurrentUser from "@/actions/getCurrentUser";
+import getHotelList from "@/actions/getHotelList";
 import HomePage from "@/components/HomePage/page";
-/* eslint-disable react/no-unescaped-entities */
-
 
 export default async function Root() {
   const currentUser = await getCurrentUser()
-
+  const hotelList = await getHotelList()
   return (
   <div>
-    <HomePage currentUser = {currentUser}/>
+    <HomePage currentUser = {currentUser} hotelList = {hotelList}/>
   </div>
   );
 }

@@ -4,23 +4,25 @@ import Home from "../Home/page"
 import Hotels from "../Hotels/page"
 
 
-const HomePage = ( { currentUser }: any ) => {
-  return (
-    <div>
-        <div className="header">
-            <Header currentUser = {currentUser}/>
+function HomePage({ currentUser }: any , { hotelList }:any ) {
+    return (
+        <>
+        <div>
+            <div className="header">
+                <Header currentUser={currentUser} />
+            </div>
+            <div className="home">
+                <Home />
+            </div>
+            <div className="nextpage">
+                <Hotels hotelList={hotelList} />
+            </div>
+            <div className="footer">
+                <Footer />
+            </div>
         </div>
-        <div className="home">
-            <Home />
-        </div>
-        <div className="nextpage">
-            <Hotels />
-        </div>
-        <div className="footer">
-            <Footer />
-        </div>
-    </div>
-  )
+        </>
+    )
 }
 
 export default HomePage
