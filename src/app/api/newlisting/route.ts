@@ -1,7 +1,7 @@
 import prisma  from "@/db"
 
 export async function POST(req: Request){
-    const { hotelName, price, location, amenities, description, image } = await req.json()
+    const { hotelName, price, location, amenities, description, image, hostId } = await req.json()
 
     try {
         const newListing = await prisma.hotel.create({
@@ -11,7 +11,8 @@ export async function POST(req: Request){
                 address: location,
                 amenities: amenities,
                 description: description,
-                images: image
+                images: image,
+                hostId: hostId
             }
         })
         return new Response(JSON.stringify({"success": "success"}))

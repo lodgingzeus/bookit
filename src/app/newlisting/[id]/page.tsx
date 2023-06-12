@@ -1,8 +1,15 @@
 'use client';
 import React, { useState } from 'react';
+import { ToastContainer, toast } from "react-toastify"
+import getCurrentUser from '@/actions/getCurrentUser';
 import NewListing from '@/components/NewListing/page';
+import 'react-toastify/dist/ReactToastify.css';
+import { useSession } from 'next-auth/react';
 
-const Page = () => {
+const Page = ( {params}: any) => {
+
+  const { id } = params
+
   const [formData, setFormData] = useState({
     hotelName: '',
     price: '',
@@ -14,17 +21,29 @@ const Page = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
     try {
+
+      const newObj = { ...formData, hostId: id }
+
       const response = await fetch('/api/newlisting', {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify(newObj),
         headers: {
           'Content-Type': 'application/json',
         },
       });
       const data = await response.json();
-      console.log(data);
+      if(data.success === "success") {
+        toast.success('Successfully created new hotel listing')
+        setFormData({
+          hotelName: '',
+          price: '',
+          location: '',
+          image: '',
+          amenities: '',
+          description: '',
+        })
+      }
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +56,7 @@ const Page = () => {
         setFormData={setFormData}
         handleSubmit={handleSubmit}
       />
+      <ToastContainer />
     </div>
   );
 };
