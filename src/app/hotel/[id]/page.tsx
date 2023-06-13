@@ -2,18 +2,13 @@ import Header from "@/components/Header/page";
 import getCurrentUser from "@/actions/getCurrentUser";
 import Image from "next/image";
 import {getHotelById} from "@/actions/getHotelById";
-import img1 from '../../images/img1.jpg';
-import img2 from '../../images/img2.jpg';
-import img3 from '../../images/img3.jpg';
+import BookNow from "@/components/BookNow/page";
 
 const Page = async ({ params }: any) => {
   const currentUser = await getCurrentUser();
 
   const { id } = params;
   const hotel = await getHotelById(id);
-  // Array of hotel images
-  const hotelImages = [img1, img2, img3];
-  // Add more hotel images to the array
 
   return (
     <div className="mx-auto px-4">
@@ -49,10 +44,7 @@ const Page = async ({ params }: any) => {
           </div>
           </div>
           <div className="w-4/12 bg-pink-100 p-4 rounded">
-            <h3 className="text-xl font-bold mb-2">Book Now</h3>
-            <p className="text-gray-600">Check-in: [Check-in date]</p>
-            <p className="text-gray-600">Check-out: [Check-out date]</p>
-            <p className="text-gray-600">Total Price: [Total price]</p>
+            <BookNow hotel = {hotel} currentUser={currentUser} />
           </div>
         </div>
         <div className="max-w-xl mt-8">
