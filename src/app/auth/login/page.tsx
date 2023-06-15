@@ -20,8 +20,9 @@ const SignUp = () => {
     const handleSubmit = async (e: any) => {
       e.preventDefault()
       signIn('credentials', { ...userInfo, redirect: false})
-      .then(() => {
-        push("/")
+      .then((data) => {
+        if(data?.error != null) toast.warn('Wrong email or password')
+        else push("/")
     })
     }
 
