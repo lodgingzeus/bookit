@@ -31,7 +31,7 @@ const Hotels = ({ hotelList }: any) => {
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
                   onClick={() => handleClick(item)}
-                  className="px-6 py-3 bg-zinc-800 text-white font-semibold uppercase rounded-md hover:bg-zinc-800"
+                  className="px-6 py-3 bg-zinc-800 text-white font-semibold uppercase rounded-md hover:bg-zinc-700"
                 >
                   BookIT
                 </button>

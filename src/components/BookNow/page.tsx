@@ -45,17 +45,19 @@ const BookNow = ({ hotel, currentUser }: any) => {
 
   return (
     <div>
-      <h3 className="text-xl font-bold mb-2">Book Now</h3>
-      <p className="text-gray-600">
+      <h3 className="text-xl font-bold mb-2 text-left">Book Now</h3>
+      <p className="text-lg">
         Check-in Date:
-        <input type="date" value={checkInDate} onChange={handleCheckInDateChange} className="ml-2" />
+        <input type="date" value={checkInDate} onChange={handleCheckInDateChange} className="ml-2 border border-black" />
       </p>
-      <p className="text-gray-600">
+      &nbsp;
+      <p className="text-lg">
         Check-out Date:
-        <input type="date" value={checkOutDate} onChange={handleCheckOutDateChange} className="ml-2" />
+        <input type="date" value={checkOutDate} onChange={handleCheckOutDateChange} className="ml-2 border border-black" />
       </p>
-      <p className="text-gray-600">Total Price: {hotel?.price}</p>
-      <button onClick={handleSubmit} className="my-3 p-2.5 bg-transparent hover:bg-[#D03F71] text-[#317C63] font-semibold hover:text-white border border-[#317C63] hover:border-transparent rounded">BookIT</button>
+      &nbsp;
+      <p className="text-lg">Total Price: {hotel?.price}</p>
+      <button onClick={handleSubmit} className="my-3 p-2.5 px-6 py-3 bg-zinc-800 text-white font-semibold uppercase hover:bg-zinc-700">BookIT</button>
       <ToastContainer />
     </div>
   );

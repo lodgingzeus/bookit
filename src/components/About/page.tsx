@@ -52,13 +52,13 @@ const About = () => {
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our Team</h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            We are a group of friends who have come together to create a React Next.js project. This is our first endeavor as a team, and we hope you enjoy it. We invite you to explore our social platforms and connect with us.
+            We are a group of friends who have come together to create a React-Next.js project. This is our first endeavor as a team, and we hope you enjoy it. We invite you to explore our social platforms and connect with us.
           </p>
         </div>
         <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 uppercase">
           {teamMembers.map((member) => (
             <div key={member.name} className="flex items-center gap-x-6">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden cursor-pointer transition duration-300 transform hover:scale-105">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden hover:cursor-pointer transition duration-300 transform hover:scale-110">
                 <Image
                   src={glogo}
                   alt="GitHub"
