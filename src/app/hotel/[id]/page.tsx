@@ -2,14 +2,14 @@
 import Header from "@/components/Header/page";
 import getCurrentUser from "@/actions/getCurrentUser";
 import Image from "next/image";
-import { getHotelById } from "@/actions/getHotelById";
+import {getHotelById} from "@/actions/getHotelById";
+import BookNow from "@/components/BookNow/page";
 
 const Page = async ({ params }: any) => {
   const currentUser = await getCurrentUser();
 
   const { id } = params;
   const hotel = await getHotelById(id);
-
 
   return (
     <div>
@@ -40,13 +40,8 @@ const Page = async ({ params }: any) => {
             </div>
           </div>
           </div>
-          <br />
-          <div className="w-fit bg-gray-300 p-6 rounded drop-shadow-md shadow-white">
-            <h3 className="text-2xl font-bold mb-2">Book Now</h3>
-            <p className="">Check-in: [Check-in-date]</p>
-            <p className="">Check-out: [Check-out-date]</p>
-            <p className="">Total Price: [Total-price]</p>
-            <button className="w-auto mt-4 bg-alt text-white font-semibold py-2 px-4 rounded hover:bg-primary transition-colors duration-300 ease-in-out">Book</button>
+          <div className="w-4/12 bg-pink-100 p-4 rounded">
+            <BookNow hotel = {hotel} currentUser={currentUser} />
           </div>
         
        <br />
