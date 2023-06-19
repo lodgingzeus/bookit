@@ -1,8 +1,8 @@
-import Footer from "../Footer/page";
-import Header from "../Header/page";
-import Home from "../Home/page";
-import Hotels from "../Hotels/page";
-import About from "../About/page";
+import Footer from "@/components/Footer/page";
+import Header from "@/components/Header/page";
+import Home from "@/components/Home/page";
+import Hotels from "@/components/Hotels/page";
+import About from "@/components/About/page";
 
 
 function HomePage({ currentUser, hotelList }: any ) {
