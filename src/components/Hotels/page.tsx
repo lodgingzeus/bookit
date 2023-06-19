@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 const Hotels = ({ hotelList }: any) => {
-  console.log(hotelList);
+  
   let ref = useRef(null);
   const { push } = useRouter();
 

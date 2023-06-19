@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ChangeEvent } from 'react';
-import ImageUpload from '../ImageUpload/page';
+import ImageUpload from '@/components/ImageUpload/page';
 
 type NewListingProps = {
   formData: {
