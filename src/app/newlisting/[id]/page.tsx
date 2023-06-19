@@ -1,10 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify"
-import getCurrentUser from '@/actions/getCurrentUser';
 import NewListing from '@/components/NewListing/page';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSession } from 'next-auth/react';
+
 
 type FormData = {
   hotelName: string;
