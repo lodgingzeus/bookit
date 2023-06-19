@@ -1,9 +1,9 @@
 'use client';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import bg from 'src/app/images/bg.jpg';
+import bg from '@/app/images/bg.jpg';
 
-export default function Home() {
+const Home = () => {
   useEffect(() => {
     document.body.style.overflow = 'auto'; // Enable scrolling
     return () => {
@@ -32,3 +32,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home
