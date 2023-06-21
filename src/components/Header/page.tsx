@@ -6,7 +6,7 @@ import { useState } from 'react'
 import Image from 'next/image';
 import { Dialog, Popover} from '@headlessui/react'
 import { signOut } from "next-auth/react";
-import logo from '../../app/images/logo.png'
+import logo from '@/app/images/logo.png'
 import {
   Bars3Icon,
   XMarkIcon,

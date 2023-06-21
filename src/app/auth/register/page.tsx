@@ -3,11 +3,13 @@
 import FormField from "@/components/FormField/FormField";
 import { useState } from "react"
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
 
+    const { push } = useRouter()
     const isSignUp = true
 
     const [ userInfo, setUserInfo ] = useState({
@@ -21,7 +23,7 @@ const SignUp = () => {
       e.preventDefault()
       const { name, email, password, accountType } = userInfo
       if(name == '' || email == undefined || password == null) return alert('Enter all info')
-      console.log(userInfo)
+     
       try {
         const response = await fetch('/api/signup', {
           method: "POST",
@@ -33,8 +35,8 @@ const SignUp = () => {
           }),
         })
         const data = await response.json()
-        console.log(data)
-        if(data.success) toast.success(data.success)
+        
+        if(data.success) { toast.success("registered successfully") }
         if(data.error) toast.warn(data.error)
       } catch (error) {
         toast.warn('Internal server error')
