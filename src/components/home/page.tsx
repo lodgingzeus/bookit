@@ -24,9 +24,6 @@ const Home = () => {
           <p className="text-black m-4 text-xl">
             Your Gateway To Endless Adventures
           </p>
-          <button className="bg-primary border border-secondary hover:bg-alt text-black font-semibold p-4 m-1 transform transition-transform duration-300 hover:scale-105">
-            LEARN MORE
-          </button>
         </div>
       </main>
     </>

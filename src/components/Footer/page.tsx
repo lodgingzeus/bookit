@@ -14,17 +14,6 @@ const Footer = () => {
     <span className="text-xs sm:text-center pl-12">
     ©2023 BookIT All Rights Reserved.
     </span>
-    <ul className="flex flex-wrap items-center text-sm font-semibold leading-6">
-        <li>
-            <a href="/" className="mr-4 hover:underline md:mr-6 ">Home</a>
-        </li>
-        <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">Hotels</a>
-        </li>
-        <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">About</a>
-        </li>
-    </ul>
     </div>
 </footer>
 
