@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer/page";
 import Header from "@/components/Header/page";
-import Home from "@/components/Home/page";
+import Home from "@/components/home/page";
 import Hotels from "@/components/Hotels/page";
 import About from "@/components/About/page";
 
