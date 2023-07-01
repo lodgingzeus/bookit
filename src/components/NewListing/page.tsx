@@ -1,3 +1,5 @@
+'use client'
+
 import React, { ChangeEvent } from 'react';
 import ImageUpload from '@/components/ImageUpload/page';
 
@@ -20,19 +22,14 @@ type NewListingProps = {
       description: string;
     }>
   >;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void; // Update the type here
 };
 
 const NewListing = ({
   formData,
   setFormData,
+  handleSubmit,
 }: NewListingProps) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Submit logic
-
-    // Redirect to "/" homepage
-    window.location.href = '/';
-  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
