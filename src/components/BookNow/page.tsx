@@ -44,7 +44,7 @@ const BookNow = ({ hotel, currentUser }: any) => {
   }
 
   return (
-    <div>
+    <div className='w-fit'>
       <h3 className="text-xl font-bold mb-2 text-left">Book Now</h3>
       <div className="text-lg">
         Check-In Date:

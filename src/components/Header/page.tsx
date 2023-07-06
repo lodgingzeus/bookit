@@ -23,13 +23,13 @@ const Header: React.FC<Props> = ( { currentUser }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
       <div>
-      <header className="border border-secondary">
+      <header>
         <nav className="mx-auto flex max-w-8xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">BookIT</span>
               <Image src={logo} alt="logo" className="h-30 w-20"/>
-          </Link>
+          </a>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -41,27 +41,42 @@ const Header: React.FC<Props> = ( { currentUser }) => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        
+        <Popover.Group className="hidden lg:flex lg:gap-x-12">
+          <a href="/" className="text-sm font-semibold leading-6 hover:underline">
+            Home
+          </a>
+          <a href="/" className="text-sm font-semibold leading-6 hover:underline">
+            Hotels
+          </a>
+          <a href="/" className="text-sm font-semibold leading-6 hover:underline">
+            About
+          </a>
+          {isHost && (
+            <Link href={`/newlisting/${currentUser?.id}`} className="text-sm font-semibold leading-6 hover:underline">
+            Create a listing
+            </Link>
+          )}
+        </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {currentUser ? (
             <>
-            <div className="p-2 font-semibold tracking-tight border border-alt bg-primary hover:bg-secondary uppercase"> 
+            <div className="p-2 font-semibold tracking-tight bg-primary hover:bg-secondary uppercase"> 
             Hello {currentUser?.name} 
             </div>
             &nbsp;
-            <div onClick={() => signOut()} className="p-2 inline-block font-semibold tracking-tight border border-alt bg-secondary hover:bg-primary">
+            <div onClick={() => signOut()} className="p-2 inline-block font-semibold tracking-tight bg-secondary hover:bg-primary">
                 Sign out
             </div>
             </>
           ) : (
             <div>
-                <Link href="/auth/login" className="px-3 py-2 font-semibold tracking-tight border border-alt bg-primary hover:bg-secondary">
+                <a href="/auth/login" className="px-3 py-2 font-semibold tracking-tight bg-primary hover:bg-secondary">
                     Log in
-                </Link>
+                </a>
                 &nbsp;
-                <Link href="/auth/register" className="px-3 py-2 font-semibold tracking-tight border border-alt bg-secondary hover:bg-primary">
+                <a href="/auth/register" className="px-3 py-2 font-semibold tracking-tight bg-secondary hover:bg-primary">
                     Sign Up
-                </Link>
+                </a>
     
             </div>
           )}
@@ -72,10 +87,10 @@ const Header: React.FC<Props> = ( { currentUser }) => {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           
           <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">BookIT</span>
               <Image src={logo} alt="logo" className="h-30 w-20" />
-            </Link>
+            </a>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -88,16 +103,28 @@ const Header: React.FC<Props> = ( { currentUser }) => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y">
               <div className="space-y-2 py-6">
+                <a href="/" className="text-sm font-semibold hover:underline">
+                  Home
+                </a>
+                <br />
+                <a href="/" className="text-sm font-semibold hover:underline">
+                  Hotels
+                </a>
+                <br />
+                <a href="/" className="text-sm font-semibold hover:underline">
+                  About
+                </a>
+                <br />
               </div>
               <div className="py-6">
                 <div>
-                  <Link href="/auth/login" className="px-3 py-2 font-semibold tracking-tight border border-alt bg-primary hover:bg-secondary">
+                  <a href="/auth/login" className="px-3 py-2 font-semibold tracking-tight  bg-primary hover:bg-secondary">
                     Log in
-                  </Link>
+                  </a>
                   &nbsp;
-                  <Link href="/auth/register" className="px-3 py-2 font-semibold tracking-tight border border-alt bg-secondary hover:bg-primary">
+                  <a href="/auth/register" className="px-3 py-2 font-semibold tracking-tight  bg-secondary hover:bg-primary">
                     Sign Up
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
